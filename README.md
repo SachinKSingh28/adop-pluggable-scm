@@ -1,26 +1,47 @@
-[![Build Status](https://travis-ci.org/Accenture/adop-pluggable-scm.svg?branch=master)](https://travis-ci.org/Accenture/adop-pluggable-scm)
+# ADOP Documentation
 
-# ADOP Pluggable SCM Library
+This directory captures the ADOP documentation that is published to GitHub Pages. It will be periodically published alongside new releases by copying the contents of this folder into the gh-pages branch.
 
-This library provides a mechanism to create SCM provider agnostic Job DSL SCM/trigger closures.
+For more information on GitHub Pages:
 
-# Testing
+- https://pages.github.com/
+- https://help.github.com/categories/customizing-github-pages/
 
-To execute the frameworks tests execute.
+## Developing the Site
 
-`gradlew test`
+1. Make your desired changes in this directory
+1. Test that they work locally by generating the site:
+ - You can publish them to your own gh-pages branch (see instructions below too): https://help.github.com/articles/creating-project-pages-manually/
+ - You can use Docker: docker-compose build && docker-compose up -d
+ - You can generate the site locally by installing Jekyll: https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
+1. Submit a PR for the master branch
+1. Make sure Travis is happy
 
-# License
-Please view [license information](LICENSE.md) for the software contained on this image.
+## Generating Javadocs (Groovydocs)
 
-## Documentation
-Documentation will be captured within this README.md and this repository's Wiki.
+1. As the Pluggable SCM is written in Groovy, docs are generated using groovydoc
+ - Set up Groovy
+ - cd to your .groovy classes folder
+ - run 
+```
+ groovydoc -classpath <your_groovy_path>\lib\
+          -d output
+          -windowtitle "ADOP Pluggable SCM"
+          -header "Pluggable SCM"
+          -footer "ADOP"
+          -doctitle "Pluggable SCM"
+          *.groovy *.java
+```
+1. After that output will be generated containing .html files etc.
+1. Some minor changed will be needed as by default it names the class as Default not pluggable.scm
+1. Add files to javadocs folder
 
-## Issues
-If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/Accenture/adop-pluggable-scm/issues).
+## Publishing the Site
 
-## Contribute
-You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
-
-Before you start to code, we recommend discussing your plans through a [GitHub issue](https://github.com/Accenture/adop-pluggable-scm/issues), especially for more ambitious contributions. This gives other contributors a chance to point you in the right direction, give you feedback on your design, and help you find out if someone else is working on the same thing.
-
+1. Checkout the "gh-pages" branch
+1. Remove the contents with "git rm -r \*"
+1. Checkout the site directory from the master branch with "git checkout master -- site"
+1. Move the content out of the site directory with "git mv -f site/* site/.gitignore site/.travis.yml ."
+1. Check that the changes are just what is expected with "git status"
+1. Once satisfied, commit and push directly to origin 
+1. Verify that GitHub Pages is reflecting the new changes (this can take a few minutes)
