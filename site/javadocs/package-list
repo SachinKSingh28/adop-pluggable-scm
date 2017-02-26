@@ -1,2 +1,5 @@
-DefaultPackage
-pluggable.scm
+groovy.pluggable.configuration
+groovy.pluggable.scm
+groovy.pluggable.scm.bitbucket
+groovy.pluggable.scm.gerrit
+groovy.pluggable.scm.helpers
