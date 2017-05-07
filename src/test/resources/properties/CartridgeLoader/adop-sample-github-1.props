@@ -1,0 +1,7 @@
+loader.id=adop-github-1
+loader.credentialId=github-https-credential
+github.endpoint=github.com
+github.apiendpoint=api.github.com
+github.port=443
+github.protocol=https
+github.namespacetype=org

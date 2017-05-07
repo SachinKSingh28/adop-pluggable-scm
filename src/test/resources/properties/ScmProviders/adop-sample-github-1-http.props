@@ -1,0 +1,6 @@
+scm.loader.id=adop-github-1
+scm.id=adop-github-https
+scm.type=github
+scm.protocol=https
+scm.port=443
+scm.url=https://github.com/
